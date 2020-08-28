@@ -5,9 +5,11 @@ public class Duke {
     public static void main(String[] args) {
 
         int MAX_SIZE = 100;
-        String[] data = new String[MAX_SIZE];
+        Task[] tasks = new Task[MAX_SIZE];
         int idx = 0;
         String[] temp;
+        String done_temp;
+        int done_idx;
         int i;
 
         String greet = "____________________________________________________________\n"
@@ -21,18 +23,23 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         String input = in.nextLine();
         while (!(input.equals("bye"))){
-            switch (input){
-                case "list":
-                    System.out.println("Here's what you have in the list:");
-                    for (i=0; i<idx; i++){
-                        System.out.println((i+1) + ". " + data[i]);
-                    }
-                    break;
-                default:
-                    data[idx] = input;
-                    idx++;
-                    System.out.println("    I added '" + input + "' to the list");
-                    break;
+            if (input.contains("list")) {
+                System.out.println("Here's what you have in the list:");
+                for (i = 0; i < idx; i++) {
+                    System.out.println((i + 1) + ".[" + tasks[i].getStatusIcon() + "] " + tasks[i].getDescription());
+                }
+            }
+            else if (input.contains("done")){
+                done_temp = input.split(" ")[1];
+                done_idx = Integer.parseInt(done_temp);
+                tasks[done_idx-1].markTaskAsDone();
+                System.out.println("    Nice! I've marked this task as done:");
+                System.out.println(("  [" + tasks[done_idx-1].getStatusIcon() + "] " + tasks[done_idx-1].getDescription()));
+            }
+            else{
+                tasks[idx] = new Task(input);
+                idx++;
+                System.out.println("    I added '" + input + "' to the list");
             }
             input = in.nextLine();
         }
