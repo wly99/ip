@@ -21,24 +21,38 @@ public class Duke {
 
         Scanner in = new Scanner(System.in);
         String input = in.nextLine();
-        while (!(input.equals("bye"))) {
-            if (input.contains("list")) {
+        String[] split = input.split(" ");
+        String[] temp_split;
+        String temp_string;
+        while (!(split[0].equals("bye"))) {
+            if (split[0].equals("list")) {
                 System.out.println("Here's what you have in the list:");
                 for (i = 0; i < idx; i++) {
-                    System.out.println((i + 1) + ".[" + tasks[i].getStatusIcon() + "] " + tasks[i].getDescription());
+                    System.out.println((i + 1) + tasks[i].toString());
                 }
-            } else if (input.contains("done")) {
+            } else if (split[0].equals("done")) {
                 done_temp = input.split(" ")[1];
                 done_idx = Integer.parseInt(done_temp);
                 tasks[done_idx-1].markTaskAsDone();
                 System.out.println("    Nice! I've marked this task as done:");
-                System.out.println(("  [" + tasks[done_idx-1].getStatusIcon() + "] " + tasks[done_idx-1].getDescription()));
-            } else {
-                tasks[idx] = new Task(input);
+                System.out.println(done_idx +"." + tasks[done_idx-1].toString());
+            } else if (split[0].equals("todo")) {
+                tasks[idx] = new Todo(input.substring(5));
                 idx++;
-                System.out.println("    I added '" + input + "' to the list");
+                System.out.println("    I added '" + input.substring(5) + "' to the list");
+            } else if (split[0].equals("deadline")) {
+                temp_string = input.substring(9);
+                temp_split = temp_string.split("/by");
+                tasks[idx] = new Deadline(temp_split[0].strip(), temp_split[1].strip());
+                idx++;
+            } else if (split[0].equals("event")) {
+                temp_string = input.substring(6);
+                temp_split = temp_string.split("/at");
+                tasks[idx] = new Event(temp_split[0].strip(), temp_split[1].strip());
+                idx++;
             }
             input = in.nextLine();
+            split = input.split(" ");
         }
         System.out.println(goodbye);
     }
