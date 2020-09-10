@@ -45,6 +45,8 @@ public class Duke {
                 case "bye":
                     isBye = true;
                     break;
+                default:
+                    System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
         } while (!isBye);
     }
@@ -70,9 +72,13 @@ public class Duke {
     }
 
     private static void addTodo(Task[] tasks, String input) {
-        tasks[idx] = new Todo(input.substring(5));
-        idx++;
-        System.out.println("    I added '" + input.substring(5) + "' to the list");
+        try {
+            tasks[idx] = new Todo(input.substring(5));
+            idx++;
+            System.out.println("    I added '" + input.substring(5) + "' to the list");
+        } catch (StringIndexOutOfBoundsException e) {
+            System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
+        }
     }
 
     private static void markAsDone(Task[] tasks, String input) {
