@@ -52,23 +52,31 @@ public class Duke {
     }
 
     private static void addEvent(String input) {
-        String temp_string;
-        String[] temp_split;
-        temp_string = input.substring(6);
-        temp_split = temp_string.split("/at");
-        tasks[idx] = new Event(temp_split[0].strip(), temp_split[1].strip());
-        idx++;
-        System.out.println("    I added '" + temp_split[0].strip() + "' to the list");
+        try {
+            String temp_string;
+            String[] temp_split;
+            temp_string = input.substring(6);
+            temp_split = temp_string.split("/at");
+            tasks[idx] = new Event(temp_split[0].strip(), temp_split[1].strip());
+            idx++;
+            System.out.println("    I added '" + temp_split[0].strip() + "' to the list");
+        } catch (StringIndexOutOfBoundsException e) {
+            System.out.println("☹ OOPS!!! The description of an event cannot be empty.");
+        }
     }
 
     private static void addDeadline(String input) {
-        String temp_string;
-        String[] temp_split;
-        temp_string = input.substring(9);
-        temp_split = temp_string.split("/by");
-        tasks[idx] = new Deadline(temp_split[0].strip(), temp_split[1].strip());
-        idx++;
-        System.out.println("    I added '" + temp_split[0].strip() + "' to the list");
+        try {
+            String temp_string;
+            String[] temp_split;
+            temp_string = input.substring(9);
+            temp_split = temp_string.split("/by");
+            tasks[idx] = new Deadline(temp_split[0].strip(), temp_split[1].strip());
+            idx++;
+            System.out.println("    I added '" + temp_split[0].strip() + "' to the list");
+        } catch (StringIndexOutOfBoundsException e) {
+            System.out.println("☹ OOPS!!! The description of a deadline cannot be empty.");
+        }
     }
 
     private static void addTodo(Task[] tasks, String input) {
