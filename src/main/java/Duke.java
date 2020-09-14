@@ -53,7 +53,7 @@ public class Duke {
                 line = in.readLine();
             }
         } catch (FileNotFoundException e) {
-            System.out.println("File not found");
+            System.out.println("File not found when loading data.");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -62,12 +62,12 @@ public class Duke {
     private static void writeData() {
         try {
             PrintWriter writer = new PrintWriter("Duke.txt");
-            for (int i = 0; i < idx; i++) {
-                writer.write(tasks.get(i).getWritable());
+            for (Task task: tasks) {
+                writer.write(task.getWritable());
             }
             writer.close();
         } catch (FileNotFoundException e) {
-            System.out.println("File not found");
+            System.out.println("File not found when writing data.");
         }
     }
 
@@ -172,10 +172,6 @@ public class Duke {
         tasks.get(done_idx-1).markTaskAsDone();
         System.out.println("    Nice! I've marked this task as done:");
         System.out.println(done_idx + "." + tasks.get(done_idx-1).toString());
-        tasks.get(done_idx - 1).markTaskAsDone();
-        System.out.println("    Nice! I've marked this task as done:");
-        System.out.println(done_idx + "." + tasks.get(done_idx - 1).toString());
-        writeData();
     }
 
     private static void listTasks() {
