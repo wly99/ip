@@ -1,9 +1,9 @@
 import java.util.ArrayList;
+import java.io.*;
 import java.util.Scanner;
 
 public class Duke {
 
-    final static int MAX_SIZE = 100;
     static int idx = 0;
     static ArrayList<Task> tasks = new ArrayList<>();
 
@@ -11,10 +11,64 @@ public class Duke {
 
         greetUser();
 
+        loadData();
+
         serveUser();
 
         goodbyeUser();
 
+    }
+
+    private static void loadData() {
+        try {
+            BufferedReader in = new BufferedReader(new FileReader("Duke.txt"));
+            String line = in.readLine();
+            String isDoneStatus, command, input;
+            String[] temp;
+            while (line != null) {
+                temp = line.split(" ", 2);
+                isDoneStatus = temp[0];
+                input = temp[1];
+                temp = temp[1].split(" ", 2);
+                command = temp[0].toLowerCase();
+                switch (command) {
+                    case "todo":
+                        addTodo(input);
+                        if (isDoneStatus.equals("true")) {
+                            tasks.get(idx - 1).markTaskAsDone();
+                        }
+                        break;
+                    case "deadline":
+                        addDeadline(input);
+                        if (isDoneStatus.equals("true")) {
+                            tasks.get(idx - 1).markTaskAsDone();
+                        }
+                        break;
+                    case "event":
+                        addEvent(input);
+                        if (isDoneStatus.equals("true")) {
+                            tasks.get(idx - 1).markTaskAsDone();
+                        }
+                }
+                line = in.readLine();
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void writeData() {
+        try {
+            PrintWriter writer = new PrintWriter("Duke.txt");
+            for (int i = 0; i < idx; i++) {
+                writer.write(tasks.get(i).getWritable());
+            }
+            writer.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        }
     }
 
     private static void serveUser() {
@@ -27,7 +81,7 @@ public class Duke {
             input = in.nextLine();
             split = input.split(" ");
             command = split[0].toLowerCase();
-            switch (command){
+            switch (command) {
                 case "list":
                     listTasks();
                     break;
@@ -45,6 +99,7 @@ public class Duke {
                     break;
                 case "bye":
                     isBye = true;
+                    writeData();
                     break;
                 case "delete":
                     deleteTask(input);
@@ -117,6 +172,10 @@ public class Duke {
         tasks.get(done_idx-1).markTaskAsDone();
         System.out.println("    Nice! I've marked this task as done:");
         System.out.println(done_idx + "." + tasks.get(done_idx-1).toString());
+        tasks.get(done_idx - 1).markTaskAsDone();
+        System.out.println("    Nice! I've marked this task as done:");
+        System.out.println(done_idx + "." + tasks.get(done_idx - 1).toString());
+        writeData();
     }
 
     private static void listTasks() {
