@@ -1,10 +1,11 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
 
     final static int MAX_SIZE = 100;
     static int idx = 0;
-    static Task[] tasks = new Task[MAX_SIZE];
+    static ArrayList<Task> tasks = new ArrayList<>();
 
     public static void main(String[] args) {
 
@@ -28,13 +29,13 @@ public class Duke {
             command = split[0].toLowerCase();
             switch (command){
                 case "list":
-                    listTasks(tasks, idx);
+                    listTasks();
                     break;
                 case "done":
-                    markAsDone(tasks, input);
+                    markAsDone(input);
                     break;
                 case "todo":
-                    addTodo(tasks, input);
+                    addTodo(input);
                     break;
                 case "deadline":
                     addDeadline(input);
@@ -45,10 +46,29 @@ public class Duke {
                 case "bye":
                     isBye = true;
                     break;
+                case "delete":
+                    deleteTask(input);
+                    break;
                 default:
                     System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
         } while (!isBye);
+    }
+
+    private static void deleteTask(String input) {
+        try {
+            String[] temp_split;
+            temp_split = input.split(" ");
+            int index = Integer.parseInt(temp_split[1]) - 1;
+            String temp_print = tasks.get(index).toString();
+            tasks.remove(index);
+            idx--;
+            System.out.println("Noted. I've removed this task: ");
+            System.out.println("  " + temp_print);
+            System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+        } catch (StringIndexOutOfBoundsException e) {
+            System.out.println("☹ OOPS!!! You need to specify the task number.");
+        }
     }
 
     private static void addEvent(String input) {
@@ -57,7 +77,7 @@ public class Duke {
             String[] temp_split;
             temp_string = input.substring(6);
             temp_split = temp_string.split("/at");
-            tasks[idx] = new Event(temp_split[0].strip(), temp_split[1].strip());
+            tasks.add(idx, new Event(temp_split[0].strip(), temp_split[1].strip()));
             idx++;
             System.out.println("    I added '" + temp_split[0].strip() + "' to the list");
         } catch (StringIndexOutOfBoundsException e) {
@@ -71,7 +91,7 @@ public class Duke {
             String[] temp_split;
             temp_string = input.substring(9);
             temp_split = temp_string.split("/by");
-            tasks[idx] = new Deadline(temp_split[0].strip(), temp_split[1].strip());
+            tasks.add(idx, new Deadline(temp_split[0].strip(), temp_split[1].strip()));
             idx++;
             System.out.println("    I added '" + temp_split[0].strip() + "' to the list");
         } catch (StringIndexOutOfBoundsException e) {
@@ -79,9 +99,9 @@ public class Duke {
         }
     }
 
-    private static void addTodo(Task[] tasks, String input) {
+    private static void addTodo(String input) {
         try {
-            tasks[idx] = new Todo(input.substring(5));
+            tasks.add(idx, new Todo(input.substring(5)));
             idx++;
             System.out.println("    I added '" + input.substring(5) + "' to the list");
         } catch (StringIndexOutOfBoundsException e) {
@@ -89,21 +109,21 @@ public class Duke {
         }
     }
 
-    private static void markAsDone(Task[] tasks, String input) {
+    private static void markAsDone(String input) {
         String done_temp;
         int done_idx;
         done_temp = input.split(" ")[1];
         done_idx = Integer.parseInt(done_temp);
-        tasks[done_idx-1].markTaskAsDone();
+        tasks.get(done_idx-1).markTaskAsDone();
         System.out.println("    Nice! I've marked this task as done:");
-        System.out.println(done_idx + "." + tasks[done_idx-1].toString());
+        System.out.println(done_idx + "." + tasks.get(done_idx-1).toString());
     }
 
-    private static void listTasks(Task[] tasks, int idx) {
+    private static void listTasks() {
         int i;
         System.out.println("Here's what you have in the list:");
         for (i = 0; i < idx; i++) {
-            System.out.println((i + 1) + "." + tasks[i].toString());
+            System.out.println((i + 1) + "." + tasks.get(i).toString());
         }
     }
 
