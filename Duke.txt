@@ -1,2 +1,2 @@
-true todo 1
-true todo 2
+false event CS2113 lecture on Friday 18 September 2020 /at from 4 pm to 6 pm
+false deadline submit UG draft /by today 2359

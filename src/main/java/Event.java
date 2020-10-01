@@ -14,6 +14,6 @@ public class Event extends Task {
 
     @Override
     public String getWritable() {
-        return isDone + "event " + description + " /at " + at + "\n";
+        return isDone + " event " + description + " /at " + at + "\n";
     }
 }

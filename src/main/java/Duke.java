@@ -6,16 +6,17 @@ public class Duke {
 
     static int idx = 0;
     static ArrayList<Task> tasks = new ArrayList<>();
+    static Ui ui = new Ui();
 
     public static void main(String[] args) {
 
-        greetUser();
+        ui.greetUser();
 
         loadData();
 
         serveUser();
 
-        goodbyeUser();
+        ui.goodbyeUser();
 
     }
 
@@ -55,6 +56,8 @@ public class Duke {
         } catch (FileNotFoundException e) {
             System.out.println("File not found when loading data.");
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ArrayIndexOutOfBoundsException e) {
             e.printStackTrace();
         }
     }
@@ -182,17 +185,4 @@ public class Duke {
         }
     }
 
-    private static void goodbyeUser() {
-        String goodbye = "Bye. Hope to see you again soon!\n"
-                + "____________________________________________________________\n";
-        System.out.println(goodbye);
-    }
-
-    private static void greetUser() {
-        String greet = "____________________________________________________________\n"
-                + "Hello! I'm Duke\n"
-                + "What can I do for you?\n"
-                + "____________________________________________________________\n";
-        System.out.println(greet);
-    }
 }

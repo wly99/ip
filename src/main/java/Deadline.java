@@ -22,6 +22,6 @@ public class Deadline extends Task {
 
     @Override
     public String getWritable() {
-        return isDone + "deadline " + description + " /by " + by + "\n";
+        return isDone + " deadline " + description + " /by " + by + "\n";
     }
 }
