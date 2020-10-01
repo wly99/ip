@@ -21,4 +21,9 @@ public class Parser {
     public Todo parseTodo(String input) {
         return new Todo(input.substring(5));
     }
+
+    public String parseCommand(String input) {
+        String[] split = input.split(" ");
+        return split[0].toLowerCase();
+    }
 }
