@@ -1,29 +1,35 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * TaskList handles all the editing and saving of the tasks
+ */
 public class TaskList implements Iterable<Task> {
 
     private static ArrayList<Task> tasks;
     private static Parser parser = new Parser();
 
+    /**
+     * Creates new empty TaskList
+     */
     public TaskList(){
         tasks = new ArrayList<>();
     }
 
+    /**
+     * Gets a Task object at specified index
+     * @param index of object that you want
+     * @return a Task at specified index
+     */
     public Task get(int index){
         return tasks.get(index);
     }
 
-    public void remove(int index){
-        tasks.remove(index);
-    }
-
+    /**
+     * @return int the number of tasks
+     */
     public int size(){
         return tasks.size();
-    }
-
-    public void add(int index, Task task){
-        tasks.add(index, task);
     }
 
     @Override
@@ -31,6 +37,9 @@ public class TaskList implements Iterable<Task> {
         return tasks.iterator();
     }
 
+    /**
+     * Lists tasks for user to see
+     */
     public static void listTasks() {
         System.out.println("Here's what you have in the list:");
         for (int i = 0; i < tasks.size(); i++) {
@@ -38,6 +47,10 @@ public class TaskList implements Iterable<Task> {
         }
     }
 
+    /**
+     * Delete task
+     * @param input containes the index of task to be deleted
+     */
     public static void deleteTask(String input) {
         try {
             String[] temp_split;
@@ -53,6 +66,9 @@ public class TaskList implements Iterable<Task> {
         }
     }
 
+    /**
+     * @param input contains Event to be added
+     */
     public static void addEvent(String input) {
         try {
             Event newEvent = parser.parseEvent(input);
@@ -63,6 +79,9 @@ public class TaskList implements Iterable<Task> {
         }
     }
 
+    /**
+     * @param input contains Deadline to be added
+     */
     public static void addDeadline(String input) {
         try {
             Deadline newDeadline = parser.parseDeadline(input);
@@ -73,6 +92,9 @@ public class TaskList implements Iterable<Task> {
         }
     }
 
+    /**
+     * @param input contains Todo to be added
+     */
     public static void addTodo(String input) {
         try {
             Todo newTodo = parser.parseTodo(input);
@@ -83,6 +105,9 @@ public class TaskList implements Iterable<Task> {
         }
     }
 
+    /**
+     * @param input contains Task to be marked as done
+     */
     public static void markAsDone(String input) {
         String done_temp;
         int done_idx;
@@ -93,6 +118,9 @@ public class TaskList implements Iterable<Task> {
         System.out.println(done_idx + "." + tasks.get(done_idx-1).toString());
     }
 
+    /** Print tasks that match the search query
+     * @param input contains the words to search for
+     */
     public void find(String input) {
         System.out.println("Here are the matching tasks in your list:");
         int result_index = 0;

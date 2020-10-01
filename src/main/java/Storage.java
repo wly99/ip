@@ -1,9 +1,17 @@
 import java.io.*;
 
+/**
+ * Handles reading and writing of files so the lists of
+ * tasks will be saved even after closing the session
+ */
 public class Storage {
 
     public Storage(){}
 
+    /**
+     * Saves all the tasks to a txt file
+     * @param tasks the TaskList that contains all the tasks
+     */
     public void writeData(TaskList tasks){
         try {
             PrintWriter writer = new PrintWriter("Duke.txt");
@@ -16,6 +24,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads tasks from a txt file into tasks
+     * @return a TaskList with all the tasks from txt file
+     */
     public static TaskList loadData() {
         TaskList tasks = new TaskList();
         try {

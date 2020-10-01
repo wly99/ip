@@ -1,13 +1,19 @@
-import java.io.*;
 import java.util.Scanner;
 
+/** Duke is a chat bot assistant that helps to keep track of tasks
+ */
 public class Duke {
+
 
     static TaskList tasks = new TaskList();
     static Ui ui = new Ui();
     static Parser parser = new Parser();
     static Storage storage = new Storage();
 
+    /**
+     * main method that launches Duke
+     * @param args
+     */
     public static void main(String[] args) {
 
         ui.greetUser();
