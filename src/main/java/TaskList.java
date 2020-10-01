@@ -92,4 +92,15 @@ public class TaskList implements Iterable<Task> {
         System.out.println("    Nice! I've marked this task as done:");
         System.out.println(done_idx + "." + tasks.get(done_idx-1).toString());
     }
+
+    public void find(String input) {
+        System.out.println("Here are the matching tasks in your list:");
+        int result_index = 0;
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i).getDescription().contains(input)) {
+                System.out.println((result_index + 1) + "." + tasks.get(i).toString());
+                result_index++;
+            }
+        }
+    }
 }

@@ -51,6 +51,10 @@ public class Duke {
                 case "delete":
                     tasks.deleteTask(input);
                     break;
+                case "find":
+                    String target = parser.parseFind(input);
+                    tasks.find(target);
+                    break;
                 default:
                     System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }

@@ -26,4 +26,8 @@ public class Parser {
         String[] split = input.split(" ");
         return split[0].toLowerCase();
     }
+
+    public String parseFind(String input) {
+        return input.substring(5);
+    }
 }
