@@ -5,8 +5,10 @@ import java.util.Scanner;
 public class Duke {
 
     static int idx = 0;
-    static ArrayList<Task> tasks = new ArrayList<>();
+    //static ArrayList<Task> tasks = new ArrayList<>();
+    static TaskList tasks = new TaskList();
     static Ui ui = new Ui();
+    static Parser parser = new Parser();
 
     public static void main(String[] args) {
 
@@ -131,13 +133,10 @@ public class Duke {
 
     private static void addEvent(String input) {
         try {
-            String temp_string;
-            String[] temp_split;
-            temp_string = input.substring(6);
-            temp_split = temp_string.split("/at");
-            tasks.add(idx, new Event(temp_split[0].strip(), temp_split[1].strip()));
+            Event newEvent = parser.parseEvent(input);
+            tasks.add(idx, newEvent);
             idx++;
-            System.out.println("    I added '" + temp_split[0].strip() + "' to the list");
+            System.out.println("    I added '" + newEvent.getDescription() + "' to the list");
         } catch (StringIndexOutOfBoundsException e) {
             System.out.println("☹ OOPS!!! The description of an event cannot be empty.");
         }
@@ -145,13 +144,10 @@ public class Duke {
 
     private static void addDeadline(String input) {
         try {
-            String temp_string;
-            String[] temp_split;
-            temp_string = input.substring(9);
-            temp_split = temp_string.split("/by");
-            tasks.add(idx, new Deadline(temp_split[0].strip(), temp_split[1].strip()));
+            Deadline newDeadline = parser.parseDeadline(input);
+            tasks.add(idx, newDeadline);
             idx++;
-            System.out.println("    I added '" + temp_split[0].strip() + "' to the list");
+            System.out.println("    I added '" + newDeadline.getDescription() + "' to the list");
         } catch (StringIndexOutOfBoundsException e) {
             System.out.println("☹ OOPS!!! The description of a deadline cannot be empty.");
         }
@@ -159,9 +155,10 @@ public class Duke {
 
     private static void addTodo(String input) {
         try {
-            tasks.add(idx, new Todo(input.substring(5)));
+            Todo newTodo = parser.parseTodo(input);
+            tasks.add(idx, newTodo);
             idx++;
-            System.out.println("    I added '" + input.substring(5) + "' to the list");
+            System.out.println("    I added '" + newTodo.getDescription() + "' to the list");
         } catch (StringIndexOutOfBoundsException e) {
             System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
         }

@@ -1,2 +1,3 @@
 false event CS2113 lecture on Friday 18 September 2020 /at from 4 pm to 6 pm
 false deadline submit UG draft /by today 2359
+false event 3 /at 3
