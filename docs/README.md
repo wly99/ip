@@ -6,21 +6,21 @@
 3. And also delete tasks.
 4. Tasks can be saved to a txt file and it will be retrieved even after stopping the program.
 
-### Feature 1 Adding tasks
+### Feature 1: Adding tasks
 Add Todo that only has a description.
 Add Event that has description and a time.
 Add Deadline that has description and a time.
 
-### Feature 2 Viewing tasks
+### Feature 2: Viewing tasks
 Duke can list all the tasks you currently have.
 
-### Feature 3 Marking tasks as done
+### Feature 3: Marking tasks as done
 Duke can mark specified tasks as done.
 
-### Feature 4 Deleting tasks
+### Feature 4: Deleting tasks
 Duke can delete the specified tasks.
 
-### Feature 5 Auto saving of tasks
+### Feature 5: Auto saving of tasks
 Duke will save all the tasks you made into a txt file and it will not be lost even after quitting the program.
 
 ## Usage
