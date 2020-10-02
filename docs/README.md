@@ -91,8 +91,8 @@ Example of usage:
 
 Expected outcome:
 
-`Noted. I've removed this task:<br/> 
-[E][✓] Birthday party (at: 8pm Sat)<br/>
+`Noted. I've removed this task: 
+[E][✓] Birthday party (at: 8pm Sat)
 Now you have 6 tasks in the list.`
 
 ### `find` - find tasks that contains the search word or words
