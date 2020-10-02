@@ -64,7 +64,7 @@ Example of usage:
 Expected outcome:
 
 `Nice! I've marked this task as done:
-2.[D][✓] Submit assignment (by: 8)`
+2. [D][✓] Submit assignment (by: 8)`
 
 ### `list` - lists your tasks
 
@@ -92,8 +92,8 @@ Example of usage:
 Expected outcome:
 
 `Noted. I've removed this task: 
-  [E][✓] Birthday party (at: 8pm Sat)
-Now you have 6 tasks in the list.`
+*  [E][✓] Birthday party (at: 8pm Sat)
+*Now you have 6 tasks in the list.`
 
 ### `find` - find tasks that contains the search word or words
 
