@@ -91,7 +91,7 @@ Example of usage:
 
 Expected outcome:
 
-`Noted. I've removed this task:` 
+`Noted. I've removed this task: \n` 
 `[E][✓] Birthday party (at: 8pm Sat)`
 `Now you have 6 tasks in the list.`
 
