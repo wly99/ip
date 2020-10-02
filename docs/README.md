@@ -93,7 +93,7 @@ Expected outcome:
 
 `Noted. I've removed this task: 
 *  [E][✓] Birthday party (at: 8pm Sat)
-*Now you have 6 tasks in the list.`
+Now you have 6 tasks in the list.`
 
 ### `find` - find tasks that contains the search word or words
 
@@ -104,4 +104,4 @@ Example of usage:
 Expected outcome:
 
 `Here are the matching tasks in your list:
-1.[E][✓] Birthday party (at: 8pm Sat)`
+1. [E][✓] Birthday party (at: 8pm Sat)`
