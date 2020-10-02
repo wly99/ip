@@ -75,13 +75,13 @@ Example of usage:
 Expected outcome:
 
 `Here's what you have in the list:
-  1.[T][✘] groceries
-2.[D][✘] Submit assignment (by: 8)
-3.[E][✓] Birthday party (at: 8pm Sat)
-4.[T][✓] get milk
-5.[T][✘] complete CS2113 tutorial
-6.[E][✘] CS2113 tutorial (at: 4pm)
-7.[D][✘] complete repl.it (by: Sunday 4pm)`
+1. [T][✘] groceries
+2. [D][✘] Submit assignment (by: 8)
+3. [E][✓] Birthday party (at: 8pm Sat)
+4. [T][✓] get milk
+5. [T][✘] complete CS2113 tutorial
+6. [E][✘] CS2113 tutorial (at: 4pm)
+7. [D][✘] complete repl.it (by: Sunday 4pm)`
 
 ### `delete` - deletes a task by its number
 
